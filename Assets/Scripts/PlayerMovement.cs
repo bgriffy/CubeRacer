@@ -25,5 +25,11 @@ public class PlayerMovement : MonoBehaviour
             rb.AddForce(0, 200, 0);
             rb.AddForce(0, -180, 0);
         }
+
+        if (rb.position.y < -1)
+        {
+            var tmpGameManager = FindObjectOfType<GameManager>();
+            tmpGameManager.EndGame();
+        }
     }
 }
