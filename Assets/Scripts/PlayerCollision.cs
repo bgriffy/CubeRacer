@@ -2,8 +2,9 @@
 
 public class PlayerCollision : MonoBehaviour
 {
-    public PlayerMovement playerMovement; 
-
+    public PlayerMovement playerMovement;
+    public GameObject failedLevelUI;
+    public float failedRestartDelay = 0.5f;
 
     void OnCollisionEnter(Collision collisionInfo)
     {
@@ -11,9 +12,15 @@ public class PlayerCollision : MonoBehaviour
         {
             Debug.Log($"Collider tag: {collisionInfo.collider.tag}");
             playerMovement.enabled = false;
+            Invoke("ShowLevelFailedUI", failedRestartDelay);
             var tmpGameManager = FindObjectOfType<GameManager>();
             tmpGameManager.EndGame();
         }
+    }
+
+    private void ShowLevelFailedUI()
+    {
+        failedLevelUI.SetActive(true);
     }
     
 }
