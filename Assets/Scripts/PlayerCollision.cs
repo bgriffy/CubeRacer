@@ -12,9 +12,9 @@ public class PlayerCollision : MonoBehaviour
         {
             Debug.Log($"Collider tag: {collisionInfo.collider.tag}");
             playerMovement.enabled = false;
-            Invoke("ShowLevelFailedUI", failedRestartDelay);
             var tmpGameManager = FindObjectOfType<GameManager>();
             tmpGameManager.EndGame();
+            ShowLevelFailedUI();
         }
     }
 
